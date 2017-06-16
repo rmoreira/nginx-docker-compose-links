@@ -1,0 +1,22 @@
+version: '2'
+services:
+  nginx:
+    image: rmoreira/nginx
+    links:
+      - server1
+      - server2
+    depends_on:
+      - server1
+      - server2
+    ports:
+      - "80:80"
+    volumes:
+      - ./index.html:/etc/nginx/html/index.html:ro
+  server1:
+    image: nginx
+    volumes:
+      - ./server1.html:/usr/share/nginx/html/index.html:ro
+  server2:
+    image: nginx
+    volumes:
+      - ./server2.html:/usr/share/nginx/html/index.html:ro
