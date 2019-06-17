@@ -1,7 +1,7 @@
 version: '2'
 services:
   nginx:
-    image: rmoreira/nginx
+    image: nginx:1.17.0
     links:
       - server1
       - server2
@@ -12,11 +12,12 @@ services:
       - "80:80"
     volumes:
       - ./index.html:/etc/nginx/html/index.html:ro
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
   server1:
-    image: nginx
+    image: nginx:1.17.0
     volumes:
       - ./server1.html:/usr/share/nginx/html/index.html:ro
   server2:
-    image: nginx
+    image: nginx:1.17.0
     volumes:
       - ./server2.html:/usr/share/nginx/html/index.html:ro
